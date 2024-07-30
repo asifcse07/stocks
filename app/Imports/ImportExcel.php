@@ -43,10 +43,12 @@ class ImportExcel implements ToCollection, WithHeadingRow, WithCustomCsvSettings
             if($row['cost_in_gbp'] < 5 && $row['stock'] < 10){
                 $errors[] = $row['product_name'] . ' skipped, cause it\'s stock value is less than 10 and cost is less than 5.';
                 $this->command->error($row['product_name'] . ' skipped.');
+                continue;
             }
             if($row['cost_in_gbp'] > 1000){
                 $errors[] = $row['product_name'] . ' skipped, cause it\'s cost is greater than 1000.';
                 $this->command->error($row['product_name'] . ' skipped.');
+                continue;
             }
             //add data in tblProductData
             if($this->isTestMode == 0){

@@ -29,9 +29,41 @@
                     </div>
                     <button type="submit" class="btn btn-outline-primary">Upload</button>
                 </form>
-                @if (session('message'))
-                    <p>{{ session('message') }}</p>
-                @endif
+
+                <br>
+
+                <div class="mt-2">
+                    <h4> Product Lists </h4>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product Code</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Description</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">Discontinue Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($products as $product)
+                            <tr>
+                                <td>{{ $product['strProductCode'] }}</td>
+                                <td>{{ $product['strProductName'] }}</td>
+                                <td>{{ $product['strProductDesc'] }}</td>
+                                <td>{{ $product['intStock'] }}</td>
+                                <td>{{ $product['decCost'] }}</td>
+                                <td>{{ $product['dtmDiscontinued'] }}</td>
+                                <td><a class="btn btn-danger" href="/delete/{{ $product['intProductDataId'] }}" role="button">DELETE</a></td>
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </div>
     </body>

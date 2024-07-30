@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductData;
 use Illuminate\Http\Request;
 
 class FileUploadController extends Controller
@@ -18,5 +19,13 @@ class FileUploadController extends Controller
         $file->storeAs('uploads', $fileName);
 
         return redirect()->back()->with('message', 'File uploaded successfully.');
+    }
+
+
+    public function deleteProduct($productId): \Illuminate\Http\RedirectResponse
+    {
+        $product = ProductData::find($productId);
+        $product->delete();
+        return redirect()->back()->with('message', 'Deleted successfully.');
     }
 }

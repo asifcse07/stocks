@@ -32,10 +32,16 @@ class ImportProductData extends Command
         $this->components->info('File processing started.');
 
         $file = $this->argument('fileName');
+
+        if(!$file){
+            $this->components->error('Import file not found.');
+            return;
+        }
+
         $isTestMode = $this->argument('isTestMode') ?? 0;
 
         if (!Storage::disk('local')->exists('uploads/'.$file)) {
-            $this->components->error('The specified file does not exist.');
+            $this->error('The specified file does not exist.');
             return;
         }
 
