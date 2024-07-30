@@ -33,7 +33,6 @@
                 <br>
 
                 <div class="mt-2">
-                    <h4> Product Lists </h4>
                     <table class="table table-striped">
                         <thead>
                         <tr>
